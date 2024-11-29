@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -90,16 +91,7 @@ export default function Home() {
                 step === 6 && <StepSix updateStepComplete={updateStepComplete} />
               }
               {
-                step === 7 && <StepSeven updateStepComplete={updateStepComplete} />
-              }
-              {
-                step === 8 && <StepFour updateStepComplete={updateStepComplete} />
-              }
-              {
-                step === 9 && <StepFour updateStepComplete={updateStepComplete} />
-              }
-              {
-                step === 10 && <StepFour updateStepComplete={updateStepComplete} />
+                step === 7 && <StepSeven />
               }
 
               <div className="col-span-1 flex justify-center items-center">
@@ -386,7 +378,7 @@ const StepSix = ({ updateStepComplete }: { updateStepComplete: (step: number, va
 
   const [images, setImages] = useState(initialImages);
 
-  function handleDragEnd(event) {
+  function handleDragEnd(event: any) {
     const { active, over } = event;
     if (over) {
       const oldIndex = images.findIndex(img => img.id === active.id);
@@ -402,7 +394,7 @@ const StepSix = ({ updateStepComplete }: { updateStepComplete: (step: number, va
     if (images.every((image, index) => image.id === (images.length - index).toString())) {
       updateStepComplete(6, true);
     }
-  }, [images]);
+  }, [updateStepComplete, images]);
 
   return (
     <>
@@ -425,7 +417,7 @@ const StepSix = ({ updateStepComplete }: { updateStepComplete: (step: number, va
   );
 }
 
-function Droppable(props) {
+function Droppable(props: any) {
   const { isOver, setNodeRef } = useDroppable({
     id: props.id,
   });
@@ -440,7 +432,7 @@ function Droppable(props) {
   );
 }
 
-function Draggable(props) {
+function Draggable(props: any) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: props.id,
   });
@@ -455,7 +447,7 @@ function Draggable(props) {
   );
 }
 
-const StepSeven = ({ updateStepComplete }: { updateStepComplete: (step: number, value: boolean) => void }) => {
+const StepSeven = () => {
   return (
     <div className="col-span-1 flex justify-center items-center">
       <article className="text-wrap">
